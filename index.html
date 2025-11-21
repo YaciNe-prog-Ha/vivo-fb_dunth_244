@@ -1319,7 +1319,6 @@
                 commune: this.commune.value,
                 deliveryType: this.delivery_type.value === 'home' ? 'التوصيل للمنزل' : 'التوصيل للمكتب',
                 quantity: currentQuantity,
-                // color: currentColor === 'white' ? 'Blanc' : 'Noire',
                 model: CURRENT_MODEL,
                 unitPrice: PRODUCT_PRICE,
                 productTotal: PRODUCT_PRICE * currentQuantity,
@@ -1335,6 +1334,7 @@
             try {
                 await fetch(SCRIPT_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(formData)
                 });
@@ -1354,7 +1354,7 @@
                     'success',
                     'تم إرسال طلبك بنجاح!',
                     'شكراً لك! سيتواصل معك فريقنا قريباً لتأكيد الطلب.',
-                    `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya}<br>اللون: ${formData.color}<br>الكمية: ${formData.quantity}<br>المجموع: ${formData.totalPrice}`
+                    `الاسم: ${formData.name}<br>الهاتف: ${formData.phone}<br>الولاية: ${formData.wilaya} <br>الكمية: ${formData.quantity}<br>المجموع: ${formData.totalPrice}`
                 );
                 
                 this.reset();
